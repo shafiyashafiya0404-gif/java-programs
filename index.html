@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shafu's Java Library</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6fb;
+            margin: 0;
+            color: #222;
+        }
+
+        header {
+            background: #24292f;
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 30px;
+        }
+
+        header p {
+            color: #ddd;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 25px auto;
+            padding: 20px;
+        }
+
+        #search {
+            width: 100%;
+            padding: 14px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .program {
+            background: white;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #ddd;
+        }
+
+        .program h2 {
+            font-size: 20px;
+        }
+
+        pre {
+            background: #171923;
+            color: #e2e8f0;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            white-space: pre;
+        }
+
+        button {
+            background: #0969da;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0550ae;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>☕ Shafu's Java Library</h1>
+    <p>My programs, always available wherever I go!</p>
+</header>
+
+<div class="container">
+
+    <input
+        type="text"
+        id="search"
+        placeholder="🔍 Search Java programs..."
+        oninput="searchPrograms()"
+    >
+
+    <div id="programList">
+
+        <div class="program">
+            <h2>1. Hello World</h2>
+            <pre id="code1">public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello World");
+    }
+}</pre>
+            <button onclick="copyCode('code1', this)">📋 Copy Code</button>
+        </div>
+
+        <div class="program">
+            <h2>2. Addition of Two Numbers</h2>
+            <pre id="code2">public class Addition {
+    public static void main(String[] args) {
+        int a = 10;
+        int b = 20;
+        int sum = a + b;
+
+        System.out.println("Sum = " + sum);
+    }
+}</pre>
+            <button onclick="copyCode('code2', this)">📋 Copy Code</button>
+        </div>
+
+        <div class="program">
+            <h2>3. Even or Odd</h2>
+            <pre id="code3">public class EvenOdd {
+    public static void main(String[] args) {
+        int number = 7;
+
+        if (number % 2 == 0) {
+            System.out.println("Even");
+        } else {
+            System.out.println("Odd");
+        }
+    }
+}</pre>
+            <button onclick="copyCode('code3', this)">📋 Copy Code</button>
+        </div>
+
+        <div class="program">
+            <h2>4. Factorial of a Number</h2>
+            <pre id="code4">public class Factorial {
+    public static void main(String[] args) {
+        int number = 5;
+        int factorial = 1;
+
+        for (int i = 1; i <= number; i++) {
+            factorial *= i;
+        }
+
+        System.out.println("Factorial = " + factorial);
+    }
+}</pre>
+            <button onclick="copyCode('code4', this)">📋 Copy Code</button>
+        </div>
+
+    </div>
+</div>
+
+<footer>
+    Made with ❤️ by Shafu | Java Programs Library
+</footer>
+
+<script>
+    function copyCode(id, button) {
+        const code = document.getElementById(id).textContent;
+
+        navigator.clipboard.writeText(code).then(() => {
+            button.textContent = "✅ Copied!";
+            setTimeout(() => {
+                button.textContent = "📋 Copy Code";
+            }, 1500);
+        }).catch(() => {
+            alert("Copy failed. Please select and copy the code manually.");
+        });
+    }
+
+    function searchPrograms() {
+        const search = document.getElementById("search").value.toLowerCase();
+        const programs = document.querySelectorAll(".program");
+
+        programs.forEach(program => {
+            program.style.display =
+                program.textContent.toLowerCase().includes(search)
+                ? "block"
+                : "none";
+        });
+    }
+</script>
+
+</body>
+</html>
